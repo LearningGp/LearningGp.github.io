@@ -271,6 +271,13 @@
           
 
   
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
 
 
 
@@ -549,6 +556,41 @@
 
 
 
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+        <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitment({
+            id: window.location.pathname, 
+            owner: 'LearningGp# MUST HAVE, Your Github ID',
+            repo: 'github-pages-comments# MUST HAVE, The repo you use to store Gitment comments',
+            
+            oauth: {
+            
+            
+                client_secret: 'c5d11683241ac9caffe2b491c39b17813bbb06ad# EITHER this or proxy_gateway, Github access secret token for the Gitment',
+            
+                client_id: 'cb2e7201cbc8c531d2e2# MUST HAVE, Github client id for the Gitment'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
 
 
 

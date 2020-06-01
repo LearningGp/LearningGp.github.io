@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前缀树,困难,leetcode," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="212 单词搜索II难度：困难 平台：leetcode Description给定一个二维网格 board *和一个字典中的单词列表 *words，找出所有同时在二维网格和字典中出现的单词。 单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母在一个单词中不允许被重复使用。 示例: 1234567891011输入:words">
+<meta property="og:type" content="article">
+<meta property="og:title" content="212 单词搜索Ⅱ">
+<meta property="og:url" content="http://yoursite.com/2020/06/01/212-%E5%8D%95%E8%AF%8D%E6%90%9C%E7%B4%A2%E2%85%A1/index.html">
+<meta property="og:site_name" content="LearningGp">
+<meta property="og:description" content="212 单词搜索II难度：困难 平台：leetcode Description给定一个二维网格 board *和一个字典中的单词列表 *words，找出所有同时在二维网格和字典中出现的单词。 单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母在一个单词中不允许被重复使用。 示例: 1234567891011输入:words">
+<meta property="article:published_time" content="2020-06-01T12:05:00.000Z">
+<meta property="article:modified_time" content="2020-06-01T12:41:42.626Z">
+<meta property="article:author" content="Arvin">
+<meta property="article:tag" content="前缀树">
+<meta property="article:tag" content="困难">
+<meta property="article:tag" content="leetcode">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/06/01/212-单词搜索Ⅱ/"/>
+
+
+
+
+
+  <title>212 单词搜索Ⅱ | LearningGp</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">LearningGp</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-commenting"></i> <br />
+            
+            留言板
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/01/212-%E5%8D%95%E8%AF%8D%E6%90%9C%E7%B4%A2%E2%85%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Arvin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LearningGp">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">212 单词搜索Ⅱ</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-01T20:05:00+08:00">
+                2020-06-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index">
+                    <span itemprop="name">刷题记录</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="212-单词搜索II"><a href="#212-单词搜索II" class="headerlink" title="212 单词搜索II"></a>212 单词搜索II</h1><p>难度：困难</p>
+<p>平台：leetcode</p>
+<h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>给定一个二维网格 <strong>board *<em>和一个字典中的单词列表 *</em>words</strong>，找出所有同时在二维网格和字典中出现的单词。</p>
+<p>单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母在一个单词中不允许被重复使用。</p>
+<p><strong>示例:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">输入:</span><br><span class="line">words &#x3D; [&quot;oath&quot;,&quot;pea&quot;,&quot;eat&quot;,&quot;rain&quot;]</span><br><span class="line">board &#x3D;</span><br><span class="line">[</span><br><span class="line"> [&#39;o&#39;,&#39;a&#39;,&#39;a&#39;,&#39;n&#39;],</span><br><span class="line"> [&#39;e&#39;,&#39;t&#39;,&#39;a&#39;,&#39;e&#39;],</span><br><span class="line"> [&#39;i&#39;,&#39;h&#39;,&#39;k&#39;,&#39;r&#39;],</span><br><span class="line"> [&#39;i&#39;,&#39;f&#39;,&#39;l&#39;,&#39;v&#39;]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">输出:[&quot;eat&quot;,&quot;oath&quot;]</span><br></pre></td></tr></table></figure>
+<p><strong>说明:</strong><br>你可以假设所有输入都由小写字母 <code>a-z</code> 组成。<br><a href="https://leetcode-cn.com/problems/word-search-ii/" target="_blank" rel="noopener">原题链接</a></p>
+<h2 id="MySolution"><a href="#MySolution" class="headerlink" title="MySolution"></a>MySolution</h2><p>这类字符串多模式匹配题目，第一反映是前缀树，关于前缀树在这里就不过多介绍了。此题基本思路是，将words字符串数组构造成前缀树，然后对board的每个字符用前缀树去匹配。当时做这道题花了一定的时间主要是因为用前缀树去匹配时涉及状态回溯，要在每次失败或者结束后回到上一个状态，并且不可遗漏，一开始写题时没有考虑周到。接下来上拆解代码。</p>
+<h3 id="结点定义"><a href="#结点定义" class="headerlink" title="结点定义"></a>结点定义</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">node</span></span>&#123;</span><br><span class="line">    <span class="comment">//节点结构</span></span><br><span class="line">    ArrayList&lt;node&gt; nodes=<span class="keyword">new</span> ArrayList&lt;node&gt;();</span><br><span class="line">    <span class="keyword">boolean</span> isEnd;</span><br><span class="line">    <span class="keyword">char</span> value;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">node</span><span class="params">(<span class="keyword">boolean</span> isEnd, <span class="keyword">char</span> value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        <span class="keyword">this</span>.isEnd = isEnd;</span><br><span class="line">        <span class="keyword">this</span>.value = value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="构造前缀树"><a href="#构造前缀树" class="headerlink" title="构造前缀树"></a>构造前缀树</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(String[] words)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//构造前缀树</span></span><br><span class="line">    <span class="keyword">for</span>(String s:words) &#123;</span><br><span class="line">        Solution.node cur=root;</span><br><span class="line">        <span class="keyword">char</span>[] a=s.toCharArray();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a.length; i++) &#123;</span><br><span class="line">            <span class="keyword">boolean</span> flag=<span class="keyword">false</span>;</span><br><span class="line">            <span class="keyword">for</span>(Solution.node n:cur.nodes) &#123;</span><br><span class="line">                <span class="keyword">if</span>(n.value==a[i]) &#123;</span><br><span class="line">                    flag=<span class="keyword">true</span>;</span><br><span class="line">                    <span class="keyword">if</span>(i==a.length-<span class="number">1</span>) &#123;</span><br><span class="line">                        n.isEnd=<span class="keyword">true</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                        cur=n;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(!flag) &#123;</span><br><span class="line">                <span class="keyword">if</span>(i!=a.length-<span class="number">1</span>) &#123;</span><br><span class="line">                    cur.nodes.add(<span class="keyword">new</span> Solution.node(<span class="keyword">false</span>, a[i]));</span><br><span class="line">                    cur=cur.nodes.get(cur.nodes.size()-<span class="number">1</span>);</span><br><span class="line">                &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                    cur.nodes.add(<span class="keyword">new</span> Solution.node(<span class="keyword">true</span>, a[i]));</span><br><span class="line">                    cur=cur.nodes.get(cur.nodes.size()-<span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="前缀树匹配"><a href="#前缀树匹配" class="headerlink" title="前缀树匹配"></a>前缀树匹配</h3><p>前缀树匹配时采用递归+回溯的思想</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> j,node cur,<span class="keyword">int</span>[][] visited,String rString)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(i&lt;m &amp;&amp; i&gt;=<span class="number">0</span> &amp;&amp; j&gt;=<span class="number">0</span> &amp;&amp;j&lt;n &amp;&amp; visited[i][j]!=<span class="number">1</span>) <span class="comment">//判断边界</span></span><br><span class="line">    &#123;</span><br><span class="line">        visited[i][j]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(node n:cur.nodes) <span class="comment">//遍历当前节点子结点</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(boards[i][j]!=n.value) <span class="comment">//子节点未找到相同字母</span></span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="comment">//子节点找到相同字母</span></span><br><span class="line">            &#123;</span><br><span class="line">                rString+=boards[i][j];<span class="comment">//添加到结果String</span></span><br><span class="line">                <span class="keyword">if</span> (n.isEnd) <span class="comment">//添加到结果String集</span></span><br><span class="line">                    result.add(rString);</span><br><span class="line">                cur=n;<span class="comment">//子节点变成当前结点</span></span><br><span class="line">                <span class="keyword">if</span>(n.nodes.isEmpty()) &#123;</span><br><span class="line">                    visited[i][j]=<span class="number">0</span>;</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;<span class="number">4</span>;k++) &#123;</span><br><span class="line">                    find(i+x[k], j+y[k], cur, visited, rString);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//查询四周</span></span><br><span class="line">                visited[i][j]=<span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//子节点内无相同结点</span></span><br><span class="line">        visited[i][j]=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="整体代码"><a href="#整体代码" class="headerlink" title="整体代码"></a>整体代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    node root=<span class="keyword">new</span> node(<span class="keyword">false</span>, <span class="string">'*'</span>);</span><br><span class="line">    <span class="keyword">char</span>[][] boards;</span><br><span class="line">    Set&lt;String&gt; result=<span class="keyword">new</span> HashSet&lt;String&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span>[] x= &#123;<span class="number">0</span>,-<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>&#125;;<span class="comment">//负责向四周移动</span></span><br><span class="line">    <span class="keyword">int</span>[] y= &#123;-<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>&#125;;<span class="comment">//负责向四周移动</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> m,n;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(String[] words)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//构造前缀树</span></span><br><span class="line">        <span class="keyword">for</span>(String s:words) &#123;</span><br><span class="line">            node cur=root;</span><br><span class="line">            <span class="keyword">char</span>[] a=s.toCharArray();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a.length; i++) &#123;</span><br><span class="line">                <span class="keyword">boolean</span> flag=<span class="keyword">false</span>;</span><br><span class="line">                <span class="keyword">for</span>(node n:cur.nodes) &#123;</span><br><span class="line">                    <span class="keyword">if</span>(n.value==a[i]) &#123;</span><br><span class="line">                        flag=<span class="keyword">true</span>;</span><br><span class="line">                        <span class="keyword">if</span>(i==a.length-<span class="number">1</span>) &#123;</span><br><span class="line">                            n.isEnd=<span class="keyword">true</span>;</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                            cur=n;</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(!flag) &#123;</span><br><span class="line">                    <span class="keyword">if</span>(i!=a.length-<span class="number">1</span>) &#123;</span><br><span class="line">                        cur.nodes.add(<span class="keyword">new</span> node(<span class="keyword">false</span>, a[i]));</span><br><span class="line">                        cur=cur.nodes.get(cur.nodes.size()-<span class="number">1</span>);</span><br><span class="line">                    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                        cur.nodes.add(<span class="keyword">new</span> node(<span class="keyword">true</span>, a[i]));</span><br><span class="line">                        cur=cur.nodes.get(cur.nodes.size()-<span class="number">1</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> j,node cur,<span class="keyword">int</span>[][] visited,String rString)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(i&lt;m &amp;&amp; i&gt;=<span class="number">0</span> &amp;&amp; j&gt;=<span class="number">0</span> &amp;&amp;j&lt;n &amp;&amp; visited[i][j]!=<span class="number">1</span>) <span class="comment">//判断边界</span></span><br><span class="line">        &#123;</span><br><span class="line">            visited[i][j]=<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span>(node n:cur.nodes) <span class="comment">//遍历当前节点子结点</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(boards[i][j]!=n.value) <span class="comment">//子节点未找到相同字母</span></span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="comment">//子节点找到相同字母</span></span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="comment">//访问标记</span></span><br><span class="line">                    rString+=boards[i][j];<span class="comment">//添加到结果String</span></span><br><span class="line">                    <span class="keyword">if</span> (n.isEnd) <span class="comment">//添加到结果String集</span></span><br><span class="line">                        result.add(rString);</span><br><span class="line">                    cur=n;<span class="comment">//子节点变成当前结点</span></span><br><span class="line">                    <span class="keyword">if</span>(n.nodes.isEmpty()) &#123;</span><br><span class="line">                        visited[i][j]=<span class="number">0</span>;</span><br><span class="line">                        <span class="keyword">return</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;<span class="number">4</span>;k++) &#123;</span><br><span class="line">                        find(i+x[k], j+y[k], cur, visited, rString);</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="comment">//查询四周</span></span><br><span class="line">                    visited[i][j]=<span class="number">0</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//子节点内无相同结点</span></span><br><span class="line">            visited[i][j]=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">findWords</span><span class="params">(<span class="keyword">char</span>[][] board, String[] words)</span> </span>&#123;</span><br><span class="line">        init(words);</span><br><span class="line">        boards=board;</span><br><span class="line">        m=boards.length;</span><br><span class="line">        n=boards[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; board.length; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; board[i].length; j++) &#123;</span><br><span class="line">                <span class="keyword">int</span>[][] visited=<span class="keyword">new</span> <span class="keyword">int</span>[board.length][board[<span class="number">0</span>].length];</span><br><span class="line">                String rString=<span class="string">""</span>;</span><br><span class="line">                find(i,j,root,visited,rString);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        List&lt;String&gt; ans=<span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        <span class="keyword">for</span> (String string : result) &#123;</span><br><span class="line">            ans.add(string);</span><br><span class="line">        &#125;</span><br><span class="line">        Collections.sort(ans);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">node</span></span>&#123;</span><br><span class="line">        <span class="comment">//节点结构</span></span><br><span class="line">        ArrayList&lt;node&gt; nodes=<span class="keyword">new</span> ArrayList&lt;node&gt;();</span><br><span class="line">        <span class="keyword">boolean</span> isEnd;</span><br><span class="line">        <span class="keyword">char</span> value;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">node</span><span class="params">(<span class="keyword">boolean</span> isEnd, <span class="keyword">char</span> value)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">super</span>();</span><br><span class="line">            <span class="keyword">this</span>.isEnd = isEnd;</span><br><span class="line">            <span class="keyword">this</span>.value = value;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="有的没的"><a href="#有的没的" class="headerlink" title="有的没的"></a>有的没的</h2><p>这一分类主要记录自己做过的一些还比较有意义的题目的解题历程以及一些个人思考，菜鸡起步而已，希望自己能坚持下去，然后能有所进步吧。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%89%8D%E7%BC%80%E6%A0%91/" rel="tag"># 前缀树</a>
+          
+            <a href="/tags/%E5%9B%B0%E9%9A%BE/" rel="tag"># 困难</a>
+          
+            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/30/gitalk-Error-Validation-Failed/" rel="next" title="gitalk Error: Validation Failed">
+                <i class="fa fa-chevron-left"></i> gitalk Error: Validation Failed
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div id="gitalk-container">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.png"
+                alt="Arvin" />
+            
+              <p class="site-author-name" itemprop="name">Arvin</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#212-单词搜索II"><span class="nav-number">1.</span> <span class="nav-text">212 单词搜索II</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Description"><span class="nav-number">1.1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySolution"><span class="nav-number">1.2.</span> <span class="nav-text">MySolution</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#结点定义"><span class="nav-number">1.2.1.</span> <span class="nav-text">结点定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造前缀树"><span class="nav-number">1.2.2.</span> <span class="nav-text">构造前缀树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前缀树匹配"><span class="nav-number">1.2.3.</span> <span class="nav-text">前缀树匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#整体代码"><span class="nav-number">1.2.4.</span> <span class="nav-text">整体代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有的没的"><span class="nav-number">1.3.</span> <span class="nav-text">有的没的</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Arvin</span>
+  <span class="contact">
+    <a href="mailto:someone@example.com">arvinfield1998@outlook.com</a>
+  </span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="check-info">
+    <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33090202000449" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="/uploads/1.png" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">浙公网安备 33090202000449号</p></a>
+  </div>
+		 
+
+
+
+		 
+        
+<div class="busuanzi-count">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<!--
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="/js/src/md5.min.js"></script>
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: '',
+      clientSecret: '',
+      repo: 'github-pages-comments',
+      owner: '',
+      admin: [''],
+      id: location.pathname,
+      id: md5(location.pathname),
+      distractionFreeMode: 'false'
+    })
+    gitalk.render('gitalk-container')
+  </script>
+-->
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <div id="gitalk-container"></div>
+  <script src="/js/src/md5.min.js"></script>
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: 'cb2e7201cbc8c531d2e2',
+      clientSecret: 'c5d11683241ac9caffe2b491c39b17813bbb06ad',
+      repo: 'github-pages-comments',
+      owner: 'LearningGp',
+      admin: ['LearningGp'],
+      id: md5(location.pathname),
+      distractionFreeMode: 'false'
+    })
+    gitalk.render('gitalk-container')
+  </script>
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

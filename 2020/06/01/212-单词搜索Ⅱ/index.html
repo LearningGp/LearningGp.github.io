@@ -79,14 +79,14 @@
 
 
 
-<meta name="description" content="212 单词搜索II难度：困难 平台：leetcode Description给定一个二维网格 board *和一个字典中的单词列表 *words，找出所有同时在二维网格和字典中出现的单词。 单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母在一个单词中不允许被重复使用。 示例: 1234567891011输入:words">
+<meta name="description" content="212 单词搜索II难度：困难 平台：leetcode Description给定一个二维网格 board 和一个字典中的单词列表 words，找出所有同时在二维网格和字典中出现的单词。 单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母在一个单词中不允许被重复使用。 示例: 1234567891011输入:words &amp;#">
 <meta property="og:type" content="article">
 <meta property="og:title" content="212 单词搜索Ⅱ">
 <meta property="og:url" content="http://yoursite.com/2020/06/01/212-%E5%8D%95%E8%AF%8D%E6%90%9C%E7%B4%A2%E2%85%A1/index.html">
 <meta property="og:site_name" content="LearningGp">
-<meta property="og:description" content="212 单词搜索II难度：困难 平台：leetcode Description给定一个二维网格 board *和一个字典中的单词列表 *words，找出所有同时在二维网格和字典中出现的单词。 单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母在一个单词中不允许被重复使用。 示例: 1234567891011输入:words">
+<meta property="og:description" content="212 单词搜索II难度：困难 平台：leetcode Description给定一个二维网格 board 和一个字典中的单词列表 words，找出所有同时在二维网格和字典中出现的单词。 单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母在一个单词中不允许被重复使用。 示例: 1234567891011输入:words &amp;#">
 <meta property="article:published_time" content="2020-06-01T12:05:00.000Z">
-<meta property="article:modified_time" content="2020-06-01T12:41:42.626Z">
+<meta property="article:modified_time" content="2020-06-01T12:44:12.269Z">
 <meta property="article:author" content="Arvin">
 <meta property="article:tag" content="前缀树">
 <meta property="article:tag" content="困难">
@@ -350,7 +350,7 @@
       
         <h1 id="212-单词搜索II"><a href="#212-单词搜索II" class="headerlink" title="212 单词搜索II"></a>212 单词搜索II</h1><p>难度：困难</p>
 <p>平台：leetcode</p>
-<h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>给定一个二维网格 <strong>board *<em>和一个字典中的单词列表 *</em>words</strong>，找出所有同时在二维网格和字典中出现的单词。</p>
+<h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>给定一个二维网格 <strong>board</strong> 和一个字典中的单词列表 <strong>words</strong>，找出所有同时在二维网格和字典中出现的单词。</p>
 <p>单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母在一个单词中不允许被重复使用。</p>
 <p><strong>示例:</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">输入:</span><br><span class="line">words &#x3D; [&quot;oath&quot;,&quot;pea&quot;,&quot;eat&quot;,&quot;rain&quot;]</span><br><span class="line">board &#x3D;</span><br><span class="line">[</span><br><span class="line"> [&#39;o&#39;,&#39;a&#39;,&#39;a&#39;,&#39;n&#39;],</span><br><span class="line"> [&#39;e&#39;,&#39;t&#39;,&#39;a&#39;,&#39;e&#39;],</span><br><span class="line"> [&#39;i&#39;,&#39;h&#39;,&#39;k&#39;,&#39;r&#39;],</span><br><span class="line"> [&#39;i&#39;,&#39;f&#39;,&#39;l&#39;,&#39;v&#39;]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">输出:[&quot;eat&quot;,&quot;oath&quot;]</span><br></pre></td></tr></table></figure>

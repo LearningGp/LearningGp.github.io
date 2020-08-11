@@ -19,6 +19,47 @@
       </categories>
   </entry>
   <entry>
+    <title>ECS 7天实践训练营@day06</title>
+    <url>/2020/08/11/ECS-7%E5%A4%A9%E5%AE%9E%E8%B7%B5%E8%AE%AD%E7%BB%83%E8%90%A5-day06/</url>
+    <content><![CDATA[<h1 id="ecs-7天实践训练营day05">ECS 7天实践训练营@day05</h1>
+<h2 id="有的没的">有的没的</h2>
+<p>今天的课程是搭建离线下载服务器，主要用于帮助我们离线下载一些网络资源，方便我们直接从服务器取用，在服务器网络带宽够大的情况下，能帮助我们下载比较大的文件。流程依旧讲解的很清楚，跟着做基本没有问题。今天是训练营最后一天了，总体下来收获还是挺多的，之后的几天会好好考虑怎么更好的利用云服务器来方便生活学习。</p>
+<h2 id="打造离线下载服务器">打造离线下载服务器</h2>
+<h3 id="创建资源连接云服务器">创建资源&amp;连接云服务器</h3>
+<p>这两个步骤与之前没有差别，就不再赘述。(安全组处需要开启6080端口)</p>
+<h3 id="下载安装ccaa方案包">下载安装CCAA方案包</h3>
+<ol type="1">
+<li><p>输入命令下载（完成后自动开始安装） <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#国内服务器</span><br><span class="line">bash &lt;(curl -Lsk</span><br><span class="line">https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;helloxz&#x2F;ccaa&#x2F;master&#x2F;ccaa.sh) cdn</span><br><span class="line">#海外服务器</span><br><span class="line">bash &lt;(curl -Lsk</span><br><span class="line">https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;helloxz&#x2F;ccaa&#x2F;master&#x2F;ccaa.sh)</span><br></pre></td></tr></table></figure></p></li>
+<li><p>输入1安装CCAA <img src="/2020/08/11/ECS-7天实践训练营-day0/2.png" alt="LearningGp" /></p></li>
+<li><p>设置下载路径，可以直接回车 <img src="/2020/08/11/ECS-7天实践训练营-day0/3.png" alt="LearningGp" /></p></li>
+<li><p>输⼊ Aria2 的 RPC 通信密钥，输⼊不含特殊字符的内容即可 <img src="/2020/08/11/ECS-7天实践训练营-day0/4.png" alt="LearningGp" /></p></li>
+<li><p>安装成功 <img src="/2020/08/11/ECS-7天实践训练营-day0/5.png" alt="LearningGp" /></p></li>
+<li><p>设置 浏览器打开上一步显示的url，进入设置，填写密钥后点击重新载入即可 <img src="/2020/08/11/ECS-7天实践训练营-day0/6e.png" alt="overwrote existing file" /></p></li>
+</ol>
+<h3 id="使用离线下载服务器">使用离线下载服务器</h3>
+<h4 id="常用命令">常用命令</h4>
+<ul>
+<li>ccaa:进⼊CCAA操作界⾯</li>
+<li>ccaa status:查看CCAA运⾏状态</li>
+<li>ccaa stop:停⽌CCAA</li>
+<li>ccaa start:启动CCAA</li>
+<li>ccaa restart:重启CCAA</li>
+<li>ccaa -v:查看CCAA版本（2.0开始⽀持）</li>
+</ul>
+<h4 id="离线下载">离线下载</h4>
+<p>界面其实比较容易理解，点击新建后输入下载链接，分行可输入多个链接后点击立即下载即可，也可以上传种子文件。</p>
+<h4 id="下载至本地">下载至本地</h4>
+<p>在文件管理中选中所需要的文件，点击下载即可（推荐按量付费的云服务器，可以保证速度）</p>
+]]></content>
+      <categories>
+        <category>知识图谱</category>
+      </categories>
+      <tags>
+        <tag>ECS</tag>
+        <tag>CCAA</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ECS 7天实践训练营@day05</title>
     <url>/2020/08/10/ECS-7%E5%A4%A9%E5%AE%9E%E8%B7%B5%E8%AE%AD%E7%BB%83%E8%90%A5-day05/</url>
     <content><![CDATA[<h1 id="ecs-7天实践训练营day05">ECS 7天实践训练营@day05</h1>

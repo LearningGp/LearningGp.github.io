@@ -19,6 +19,221 @@
       </categories>
   </entry>
   <entry>
+    <title>网络爬虫笔记</title>
+    <url>/2020/10/21/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h1 id="爬虫笔记">爬虫笔记</h1>
+<h2 id="有的没的">有的没的</h2>
+<p>这个笔记是一个目录性质的笔记，主要是方便自己日后回忆，如果有有缘的大兄弟也学习了这套课程，欢迎交流。这套课程感觉还是挺实用的，在学习过程中也试着解决了一些正好遇到的需求。课程在B站上有（路飞学城）。<br />
+自己学习过程中写的相关代码都push到了自己的<a href="https://github.com/LearningGp/WebCrawler" target="_blank" rel="noopener">GitHub</a>上，可以自由查阅。之后可能也会就一些部分写详细的学习笔记。</p>
+<h2 id="http">http</h2>
+<h3 id="常用请求头信息">常用请求头信息</h3>
+<ul>
+<li>User-Agent：请求载体的身份标识</li>
+<li>Connection：请求完毕后，是否保持连接</li>
+</ul>
+<h3 id="常用响应头信息">常用响应头信息</h3>
+<ul>
+<li>Content-Type：服务器响应回客户端的数据类型</li>
+</ul>
+<h2 id="https">https</h2>
+<p>安全的超文本传输协议</p>
+<h3 id="加密方式">加密方式</h3>
+<ul>
+<li>对称密钥加密</li>
+<li>非对称密钥加密</li>
+<li>证书密钥加密（https）</li>
+</ul>
+<h2 id="requests模块">requests模块</h2>
+<p>python中原生的基于网络请求的模块，用于模拟浏览器发请求。</p>
+<h3 id="流程">流程</h3>
+<ul>
+<li>指定url</li>
+<li>发起请求</li>
+<li>获取响应数据</li>
+<li>持久化存储</li>
+</ul>
+<h3 id="实例">实例</h3>
+<ul>
+<li><p>例1 爬取百度首页</p></li>
+<li><p>例2 爬取百度查询页面</p></li>
+<li><p>例3 爬取百度翻译结果</p></li>
+<li><p>例4 爬取豆瓣电影排名</p></li>
+<li><p>练习 爬取KFC餐厅地址</p></li>
+<li><p>例5 爬取药监局网站信息</p></li>
+</ul>
+<h2 id="聚焦爬虫">聚焦爬虫</h2>
+<h3 id="流程-1">流程</h3>
+<ul>
+<li>指定url</li>
+<li>发起请求</li>
+<li>获取响应数据</li>
+<li>数据解析</li>
+<li>持久化存储</li>
+</ul>
+<h3 id="实现">实现</h3>
+<h4 id="正则">正则</h4>
+<p>利用正则表达式从爬取的数据中匹配出我们所需要的部分</p>
+<h5 id="常用表达式">常用表达式</h5>
+<figure>
+<img src="/2020/10/21/网络爬虫笔/zhengze.png" alt="" /><figcaption>LearningGp</figcaption>
+</figure>
+<h5 id="实例-爬取糗事百科图片">实例 爬取糗事百科图片</h5>
+<h4 id="bs4">bs4</h4>
+<h5 id="步骤简介">步骤简介</h5>
+<ol type="1">
+<li>实例化BeautifulSoup对象</li>
+<li>将页面源码数据加载到该对象中</li>
+<li>通过BeautifulSoup对象的属性或方法定位标签以及数据提取</li>
+</ol>
+<h5 id="数据解析相关方法和属性">数据解析相关方法和属性</h5>
+<ul>
+<li>tagName：返回html中第一次出现的tagName标签</li>
+<li>find():
+<ul>
+<li>find('tagName')：返回html中第一次出现的tagName标签</li>
+<li>find('tagName',class_/id/attr='xxx' ):属性定位</li>
+</ul></li>
+<li>find_all()：同find，但是返回所有符合条件项（列表）</li>
+<li>select()：
+<ul>
+<li>select('某种选择器（id，class，标签）')：返回列表</li>
+<li>select('用&gt;以及空格连接的多个选择器组成层级选择器')：返回列表（&gt;表示一个层级，空格表示多个层级）</li>
+</ul></li>
+<li>获取标签之间的文本数据
+<ul>
+<li>text/string/get_text()
+<ul>
+<li>text/get_text()：获取所定位标签下所有文本</li>
+<li>string：只获取所定位标签下直系文本</li>
+</ul></li>
+</ul></li>
+<li>获取标签中的属性值
+<ul>
+<li>['标签名']</li>
+</ul></li>
+</ul>
+<h5 id="实例-爬取三国演义所以章节标题和内容">实例 爬取三国演义所以章节标题和内容</h5>
+<h4 id="xpath">xpath</h4>
+<p>最常用且最便捷高效的解析方式，同时具有较好的通用性</p>
+<h5 id="步骤简介-1">步骤简介</h5>
+<ol type="1">
+<li>实例化etree的对象
+<ul>
+<li>加载本地文档：etree.parse(filePath)</li>
+<li>加载网络上获取的源码数据：etree.HTML('page_text')</li>
+</ul></li>
+<li>将页面源码数据加载到该对象中</li>
+<li>调用rtree对象中的xpath方法结合着xpath表达式实现标签的定位和内容的捕获</li>
+</ol>
+<h4 id="xpath表达式">xpath表达式</h4>
+<p>返回基本为列表，定位阶段列表内为对象（tips：谷歌浏览器F12下，Elemens窗口下选中需要的标签右键-&gt;copy-&gt;copy Xpath 可以复制对应Xpath，按需修改） - 标签定位：'/html/head/title'（层级定位） - /：表示一个层级 - //：表示多个层级，或表示从任意位置开始定位 - 属性定位：'//div<span class="citation" data-cites="class">[@class="song"]</span>' - 索引定位：'//div<span class="citation" data-cites="class">[@class="song"]</span>/p[3]'（该div下第三个p标签，从1开始） - 取文本：'/html/head/title/text()' - 取属性：'//div<span class="citation" data-cites="class">[@class="song"]</span>/img/<span class="citation" data-cites="src">@src</span>'</p>
+<h4 id="实例-1">实例</h4>
+<ul>
+<li><p>实例1 爬取58同城二手房标题</p></li>
+<li><p>实例2 爬取图片</p></li>
+<li><p>实例3 爬取城市名称</p></li>
+<li><p>练习1 爬取简历模板</p></li>
+</ul>
+<h2 id="验证码识别">验证码识别</h2>
+<h3 id="简介">简介</h3>
+<p>这边采用将验证码图片下载下来后调用第三方识别服务进行识别，本文采用超级鹰的服务，需要提前前往其网站注册账号并充值。</p>
+<h3 id="实例-2">实例</h3>
+<ul>
+<li><p>实例1 超级鹰服务测试</p></li>
+<li><p>实例2 古诗文网站验证码识别</p></li>
+</ul>
+<h2 id="代理爬虫">代理爬虫</h2>
+<h3 id="简介-1">简介</h3>
+<p>主要作用有</p>
+<ol type="1">
+<li>突破自身IP访问的限制</li>
+<li>隐藏自身真实IP</li>
+</ol>
+<p>代理相关工具网站</p>
+<ul>
+<li>快代理</li>
+<li>西祠代理</li>
+<li>www.goubanjia.com</li>
+</ul>
+<h3 id="实现-1">实现</h3>
+<h4 id="实例-代理爬虫查询ip">实例 代理爬虫查询IP</h4>
+<h2 id="异步爬虫">异步爬虫</h2>
+<h3 id="简介-2">简介</h3>
+<p>单线程串行的方式爬取效率较低，需要我们通过一些方法实现异步爬虫。</p>
+<h3 id="实现方式">实现方式</h3>
+<ul>
+<li>多线程，多进程（不推荐）
+<ul>
+<li>好处 ：为相关的阻塞操作开启线程或进程，阻塞操作就可以异步执行</li>
+<li>弊端：无法无限制开启多线程或多进程</li>
+</ul></li>
+<li>线程池、进程池（适当使用）
+<ul>
+<li>好处：降低系统对进程或者线程创建和销毁的频率，降低系统开销</li>
+<li>弊端：池中线程或进程的数量有上限</li>
+</ul></li>
+<li>单线程+异步协程（推荐）
+<ul>
+<li>使用asyncio以及aiohttp实现</li>
+</ul></li>
+</ul>
+<h2 id="selenium模块">selenium模块</h2>
+<h3 id="简介-3">简介</h3>
+<p>是一个自动化测试工具,而爬虫中使用它主要是为了解决requests无法直接执行JavaScript代码的问题 selenium本质是通过驱动浏览器，完全模拟浏览器的操作，比如跳转、输入、点击、下拉等，来拿到网页渲染之后的结果，可支持多种浏览器</p>
+<h3 id="实例-3">实例</h3>
+<ul>
+<li>例1 人人网模拟登录</li>
+</ul>
+<h2 id="scrapy框架">scrapy框架</h2>
+<h3 id="简介-4">简介</h3>
+<p>一个为了爬取网站数据，提取结构性数据而编写的应用框架。其内部已经被集成了各种功能（高性能异步下载，队列，分布式，解析，持久化等）。</p>
+<h3 id="流程-2">流程</h3>
+<ul>
+<li>创建工程：
+<ul>
+<li>scrapy startproject ProName</li>
+</ul></li>
+<li>进入工程目录：
+<ul>
+<li>cd ProName</li>
+</ul></li>
+<li>创建爬虫文件：
+<ul>
+<li>scrapy genspider spiderName www.xxx.com</li>
+</ul></li>
+<li>编写相关操作代码</li>
+<li>执行工程：
+<ul>
+<li>scrapy crawl spiderName</li>
+</ul></li>
+</ul>
+<h3 id="功能">功能</h3>
+<h4 id="基于管道的持久化存储">基于管道的持久化存储</h4>
+<ul>
+<li>修改item文件</li>
+<li>修改pipelines文件</li>
+<li>修改配置文件</li>
+</ul>
+<h4 id="便捷的全站爬取">便捷的全站爬取</h4>
+<h4 id="支持分布式集群">支持分布式集群</h4>
+<h3 id="实例-4">实例</h3>
+<ul>
+<li><p>例1 爬取糗百（持久化）</p></li>
+<li><p>例2 爬取boss直聘（中间件）</p></li>
+<li><p>例3 爬取图片</p></li>
+<li><p>例4 爬取网易（手动全站）</p></li>
+<li><p>例5 爬取阳光政务（自动全站）</p></li>
+</ul>
+]]></content>
+      <categories>
+        <category>知识图谱</category>
+      </categories>
+      <tags>
+        <tag>爬虫</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ECS 7天实践训练营@day06</title>
     <url>/2020/08/11/ECS-7%E5%A4%A9%E5%AE%9E%E8%B7%B5%E8%AE%AD%E7%BB%83%E8%90%A5-day06/</url>
     <content><![CDATA[<h1 id="ecs-7天实践训练营day06">ECS 7天实践训练营@day06</h1>

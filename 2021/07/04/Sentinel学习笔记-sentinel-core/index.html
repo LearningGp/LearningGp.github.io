@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://yoursite.com/2021/07/04/Sentinel%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-sentinel-cor/imag9e.png">
 <meta property="og:image" content="http://yoursite.com/2021/07/04/Sentinel%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-sentinel-cor/image9.png">
 <meta property="article:published_time" content="2021-07-04T15:29:00.000Z">
-<meta property="article:modified_time" content="2021-07-04T16:22:30.611Z">
+<meta property="article:modified_time" content="2021-07-10T06:25:27.279Z">
 <meta property="article:author" content="Arvin">
 <meta property="article:tag" content="源码分析">
 <meta property="article:tag" content="Sentinel">
@@ -616,17 +616,27 @@ com.alibaba.csp.sentinel.slots.system.SystemRuleManager#checkSystem</p>
 <ol type="1">
 <li>在 ProcessorSlot#entry 方法中调用 Checker#check 方法，并将 DefaultNode 传递给 Checker。</li>
 <li>Checker 根据资源名称从 RuleManager 获取为该资源配置的规则。</li>
-<li>Checker 从 传入context，以及node中根据rule和策略获取需要的node</li>
-<li>如果当前限流规则的 limitApp 为 default，则说明该限流规则对任何调用来源都生效，针对所有调用来源限流，否则只针对指定调用来源限流。</li>
-<li>如果调用来源与当前限流规则的 limitApp 相等，且 strategy 为 STRATEGY_DIRECT，则使用调用来源的 StatisticNode，实现针对调用来源限流。</li>
+<li>Checker 从 传入context，以及node中根据rule和策略获取需要的node
+<ol start="4" type="1">
+<li>如果当前限流规则的 limitApp 不为 default，该限流规则只针对指定调用来源限流。当调用来源与当前限流规则的 limitApp 相等时：
+<ol start="5" type="1">
+<li>strategy 为 STRATEGY_DIRECT，则使用调用来源的 StatisticNode，实现针对调用来源限流。</li>
 <li>strategy 为 STRATEGY_RELATE：根据限流规则配置的 refResource 获取引用资源的 ClusterNode，即使用引用资源的指标数据限流。通俗点说就是使用其它资源的指标数据限流，你的并发量高我就限流，让你多处理一点请求，等你并发量降低了，我就不限流了；</li>
 <li>strategy 为 STRATEGY_CHAIN：使用当前资源的 DefauleNode，实现按调用链路的资源指标数据限流。</li>
-<li>当 limitApp 为 default 时，针对所有来源限流。如果 strategy 为 STRATEGY_DIRECT，则使用当前资源的 ClusterNode。</li>
+</ol></li>
+<li>当 limitApp 为 default 时，针对所有来源限流。
+<ol start="9" type="1">
+<li>strategy 为 STRATEGY_DIRECT，则使用当前资源的 ClusterNode。</li>
 <li>strategy 为 STRATEGY_RELATE：使用引用资源的 ClusterNode；</li>
 <li>strategy 为 STRATEGY_CHAIN：使用当前资源的 DefauleNode。</li>
-<li>如果 limitApp 为 other，且该资源的所有限流规则都没有针对当前的调用来源限流。如果 strategy 为 STRATEGY_DIRECT，则使用 origin 的 StatisticNode。</li>
+</ol></li>
+<li>如果 limitApp 为 other，且该资源的所有限流规则都没有针对当前的调用来源限流。
+<ol start="12" type="1">
+<li>如果 strategy 为 STRATEGY_DIRECT，则使用 origin 的 StatisticNode。</li>
+</ol></li>
 <li>strategy 为 STRATEGY_RELATE：使用引用资源的 ClusterNode</li>
 <li>strategy 为 STRATEGY_CHAIN：使用当前资源的 DefauleNode</li>
+</ol></li>
 <li>根据配置调用对应的controller的canPass方法</li>
 <li>从node中获取当前时间窗口的某项指标数据（QPS、avgRt 等）与规则的阈值对比，如果达到规则的阈值则抛出 Block 异常。</li>
 </ol>
@@ -764,6 +774,10 @@ com.alibaba.csp.sentinel.slots.system.SystemRuleManager#checkSystem</p>
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2021/07/10/Sentinel%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-sentinel-cluster/" rel="prev" title="Sentinel学习笔记:sentinel-cluster">
+                Sentinel学习笔记:sentinel-cluster <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -846,7 +860,7 @@ com.alibaba.csp.sentinel.slots.system.SystemRuleManager#checkSystem</p>
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

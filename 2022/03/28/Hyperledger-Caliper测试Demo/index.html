@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Hyperledger Fabric,Hyperledger Caliper,docker," />
 
 
 
@@ -79,11 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="LearningGp">
-<meta property="og:url" content="http://yoursite.com/archives/page/2/index.html">
+<meta name="description" content="有的没的 前不久在做一个有关Hyperledger Fabric的项目，不可避免地要使用Hyperledger Caliper来做性能测试，发现网上的教程不多，版本大都也比较低，花了我不少时间。所以将过程中遇到的坑和参考资料记录下来。 正文 首先我的搭建步骤基本依照这篇文章在现有Fabric 2.2.0 网络上设置和运行Caliper性能测试 实战，搭建测试网络部分依照官方文档。接下来把遇到">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hyperledger Caliper测试Demo">
+<meta property="og:url" content="http://yoursite.com/2022/03/28/Hyperledger-Caliper%E6%B5%8B%E8%AF%95Demo/index.html">
 <meta property="og:site_name" content="LearningGp">
+<meta property="og:description" content="有的没的 前不久在做一个有关Hyperledger Fabric的项目，不可避免地要使用Hyperledger Caliper来做性能测试，发现网上的教程不多，版本大都也比较低，花了我不少时间。所以将过程中遇到的坑和参考资料记录下来。 正文 首先我的搭建步骤基本依照这篇文章在现有Fabric 2.2.0 网络上设置和运行Caliper性能测试 实战，搭建测试网络部分依照官方文档。接下来把遇到">
+<meta property="article:published_time" content="2022-03-28T13:29:00.000Z">
+<meta property="article:modified_time" content="2022-03-28T15:28:34.521Z">
 <meta property="article:author" content="Arvin">
+<meta property="article:tag" content="Hyperledger Fabric">
+<meta property="article:tag" content="Hyperledger Caliper">
+<meta property="article:tag" content="docker">
 <meta name="twitter:card" content="summary">
 
 
@@ -114,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/page/2/"/>
+  <link rel="canonical" href="http://yoursite.com/2022/03/28/Hyperledger-Caliper测试Demo/"/>
 
 
 
 
 
-  <title>归档 | LearningGp</title>
+  <title>Hyperledger Caliper测试Demo | LearningGp</title>
   
 
 
@@ -139,7 +146,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-archive">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -267,409 +274,211 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/28/Hyperledger-Caliper%E6%B5%8B%E8%AF%95Demo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Arvin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LearningGp">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">Hyperledger Caliper测试Demo</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-28T21:29:00+08:00">
+                2022-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 20 篇日志。 继续努力。
-      </span>
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index">
+                    <span itemprop="name">踩坑记录</span>
+                  </a>
+                </span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2020">2020</h1>
-          </div>
-        
-        
 
-        
+          
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/08/06/ECS-7%E5%A4%A9%E5%AE%9E%E8%B7%B5%E8%AE%AD%E7%BB%83%E8%90%A5-day01/" itemprop="url">
-              
-                <span itemprop="name">ECS 7天实践训练营@day01</span>
-              
-            </a>
-        
-      </h2>
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-08-06T11:07:00+08:00"
-              content="2020-08-06" >
-          08-06
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
 
+        </div>
+      </header>
+    
 
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/06/20/%E5%8D%95%E8%B0%83%E6%A0%88/" itemprop="url">
-              
-                <span itemprop="name">单调栈</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-06-20T21:58:00+08:00"
-              content="2020-06-20" >
-          06-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/06/02/%E9%9D%A2%E8%AF%95%E9%A2%9864-%E6%B1%821-2-n/" itemprop="url">
-              
-                <span itemprop="name">面试题64 求1+2+...+n</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-06-02T23:17:00+08:00"
-              content="2020-06-02" >
-          06-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <h1 id="有的没的">有的没的</h1>
+<p>前不久在做一个有关Hyperledger Fabric的项目，不可避免地要使用Hyperledger Caliper来做性能测试，发现网上的教程不多，版本大都也比较低，花了我不少时间。所以将过程中遇到的坑和参考资料记录下来。</p>
+<h1 id="正文">正文</h1>
+<p>首先我的搭建步骤基本依照这篇文章<a href="https://blog.csdn.net/bean_business/article/details/108937601" target="_blank" rel="noopener">在现有Fabric 2.2.0 网络上设置和运行Caliper性能测试 实战</a>，搭建测试网络部分依照<a href="https://hyperledger-fabric.readthedocs.io/en/release-2.2/tutorials.html" target="_blank" rel="noopener">官方文档</a>。接下来把遇到的问题按照博客中的顺序一一列出。</p>
+<h2 id="环境准备">环境准备</h2>
+<p>整体来说需要准备<a href="https://blog.csdn.net/bean_business/article/details/108792976" target="_blank" rel="noopener">docker</a>、<a href="https://blog.csdn.net/qq_39361915/article/details/115324217" target="_blank" rel="noopener">docker-compose</a>、Node.js、<a href="https://www.jianshu.com/p/e6ecd86397fb" target="_blank" rel="noopener">Git</a>、<a href="https://blog.csdn.net/qq_41316955/article/details/120546932" target="_blank" rel="noopener">cURL</a>、<a href="https://www.jianshu.com/p/45e379131a31" target="_blank" rel="noopener">pip3</a>（这个忘记哪里会用到，不过确实在我的清单里）。这些都是常见的工具，如果有问题，给出了对应的链接。接下来会给出一些问题的解决方案。PS：本文的环境是CentOS7。</p>
+<h3 id="启动docker时ssh掉线镜像获取速度慢">启动docker时ssh掉线&amp;镜像获取速度慢</h3>
+<p>docker0可能会占用接口，某些环境下会导致这个问题，需要我们编辑/etc/docker/daemon.json文件（文件不存在可以自己新建一个）。其中registry-mirrors，是<a href="https://developer.aliyun.com/article/29941" target="_blank" rel="noopener">阿里云镜像加速地址</a>，可以自行获取。 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [&quot;&quot;],</span><br><span class="line">  &quot;debug&quot; : true,</span><br><span class="line">  &quot;default-address-pools&quot; : [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;base&quot; : &quot;10.50.0.0&#x2F;16&quot;,</span><br><span class="line">      &quot;size&quot; : 24</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="git卡在卡在clone-into">git卡在卡在clone into</h3>
+<p>报错RPC failed； result=35, HTTP code = 0，可能是因为缓存设置的不够大。可以尝试以下命令（<a href="https://blog.csdn.net/qq_41025299/article/details/114980935" target="_blank" rel="noopener">参考链接</a>）。 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.postBuffer 50M</span><br></pre></td></tr></table></figure></p>
+<h3 id="编译出错">编译出错</h3>
+<p>使用gcc编译时可能会报错<code>warning: ‘deprecated’ attribute directive ignored [-Wattributes]</code>可以通过升级gcc解决（<a href="https://www.cnblogs.com/jixiaohua/p/11732225.html" target="_blank" rel="noopener">参考链接</a>）。</p>
+<h3 id="node.js安装">Node.js安装</h3>
+<p>Node.js安装不推荐使用博客中的方式，推荐使用nvm管理版本，因为Caliper以及链码安装可能会对npm和node有版本要求，<a href="https://cloud.tencent.com/developer/article/1812323" target="_blank" rel="noopener">安装nvm参考链接</a>。</p>
+<h2 id="部署测试网络">部署测试网络</h2>
+<p>这部分主要参考<a href="https://hyperledger-fabric.readthedocs.io/en/release-2.2/tutorials.html" target="_blank" rel="noopener">官方文档</a>。同样接下来会给出一些问题的解决方案。</p>
+<h3 id="fabric版本">Fabric版本</h3>
+<p>由于Caliper支持版本问题（官方说支持最新，不过好像有些问题），推荐在安装Fabric使用指定版本（比如Fabric v2.2.0 和 Fabric CA v1.4.7 ）。</p>
+<h3 id="无法获取官方脚本">无法获取官方脚本</h3>
+<p>如果<code>curl -sSL https://bit.ly/2ysbOFE | bash -s</code>命令报错，基本是网络原因。如果无法科学上网，可以访问<a href="https://raw.githubusercontent.com/hyperledger/fabric/master/scripts/bootstrap.sh" target="_blank" rel="noopener">未缩写的 URL</a>并且将其复制下来，命名为bootstrap.sh文件并通过bash命令执行。</p>
+<h3 id="bootstrap.sh脚本运行错误">bootstrap.sh脚本运行错误</h3>
+<p>有可能是在获取二进制文件时出错，同样一般是因为网络问题。我的解决方案是在可以科学上网的设备上将二进制文件下载下来后复制到fabric-sample目录的子目录 bin中，然后将脚本中的pullBinaries方法删除。至于下载地址，可以查看脚本中的pullBinaries方法，也可以在删除pullBinaries方法前直接运行脚本观察输出即可找到地址（因为它会先输出地址然后卡在那一步）。</p>
+<h3 id="运行测试网络错误链码安装失败">运行测试网络错误（链码安装失败）</h3>
+<p>由于我们指定了Fabric的版本，但是在测试网络的配置中拉取的镜像是最新的，因此会造成一些问题需要手动调整。将/root/fabric-samples/test-network/docker路径下的文件中的镜像版本改成你所指定的版本。例如： <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">orderer.example.com:</span><br><span class="line">    container_name: orderer.example.com</span><br><span class="line">    image: hyperledger&#x2F;fabric-orderer:2.2.0</span><br><span class="line">    environment:</span><br></pre></td></tr></table></figure></p>
+<h2 id="运行calpier">运行Calpier</h2>
+<p>这一部分依照<a href="https://blog.csdn.net/bean_business/article/details/108937601" target="_blank" rel="noopener">在现有Fabric 2.2.0 网络上设置和运行Caliper性能测试 实战</a>。同样接下来会给出一些问题的解决方案。</p>
+<h3 id="npm权限不足">npm权限不足</h3>
+<p>这好像是一种保护机制，可以在运行命令时在结尾加上<code>--unsafe-perm</code>，暂时绕过保护。</p>
+<h3 id="链码执行超时">链码执行超时</h3>
+<p>timeout expired while executing transaction 。可以修改fabric-samples/config/core.yaml 中的 peer.keepalive.client.timeout 来修改超时时间（<a href="https://charlielin.top/2020/03/26/%E5%9C%A8-fabric-%E4%B8%8A%E6%89%A7%E8%A1%8C-chaincode-%E7%9A%84%E6%A2%B3%E7%90%86/" target="_blank" rel="noopener">参考链接</a>）。PS：大部分Fabric的配置都可以在这里修改，配置含义可以参考这篇<a href="https://blog.csdn.net/QuietSugar/article/details/91541778" target="_blank" rel="noopener">文章</a>。</p>
+<h3 id="超过并发限制">超过并发限制</h3>
+<p>新版本的Fabric网关限制了并发数，但在性能测试中我们会需要测试高并发场景。可以修改fabric-samples/config/core.yaml中的这一部分。 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># Concurrency limits the number of concurrently running requests to a service on each peer.</span><br><span class="line"># Currently this option is only applied to endorser service and deliver service.</span><br><span class="line"># When the property is missing or the value is 0, the concurrency limit is disabled for the service.</span><br><span class="line">concurrency:</span><br><span class="line"># endorserService limits concurrent requests to endorser service that handles chaincode deployment, query and invocation,</span><br><span class="line"># including both user chaincodes and system chaincodes.</span><br><span class="line">endorserService: 2500</span><br><span class="line"># deliverService limits concurrent event listeners registered to deliver service for blocks and transaction events.</span><br><span class="line">deliverService: 2500</span><br><span class="line"># gatewayService limits concurrent requests to gateway service that handles the submission and evaluation of transactions.</span><br><span class="line">gatewayService: 500</span><br></pre></td></tr></table></figure></p>
+<h3 id="caliper配置">Caliper配置</h3>
+<p>最后附上Caliper的<a href="https://hyperledger.github.io/caliper/v0.4.2/getting-started/" target="_blank" rel="noopener">官方文档</a>其中的<a href="https://hyperledger.github.io/caliper/v0.4.2/bench-config/" target="_blank" rel="noopener">Benchmark Configuration</a>以及<a href="https://hyperledger.github.io/caliper/v0.4.2/rate-controllers/" target="_blank" rel="noopener">Rate Controllers</a>部分对前期测试比较重要。前者描述了测试相关的配置，比如轮数、持续时间等。后者介绍了速率控制器。</p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/06/01/212-%E5%8D%95%E8%AF%8D%E6%90%9C%E7%B4%A2%E2%85%A1/" itemprop="url">
-              
-                <span itemprop="name">212 单词搜索Ⅱ</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-06-01T20:05:00+08:00"
-              content="2020-06-01" >
-          06-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/05/30/gitalk-Error-Validation-Failed/" itemprop="url">
-              
-                <span itemprop="name">gitalk Error: Validation Failed</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-05-30T20:47:00+08:00"
-              content="2020-05-30" >
-          05-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/05/30/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" itemprop="url">
-              
-                <span itemprop="name">软件工程</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-05-30T20:34:00+08:00"
-              content="2020-05-30" >
-          05-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/05/27/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url">
-              
-                <span itemprop="name">操作系统</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-05-27T21:20:00+08:00"
-              content="2020-05-27" >
-          05-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/05/27/%E9%98%85%E8%AF%BB%E7%9A%84%E9%80%BB%E8%BE%91/" itemprop="url">
-              
-                <span itemprop="name">阅读的逻辑</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-05-27T19:48:00+08:00"
-              content="2020-05-27" >
-          05-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/05/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url">
-              
-                <span itemprop="name">计算机网络</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-05-26T18:48:00+08:00"
-              content="2020-05-26" >
-          05-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/05/25/%E8%B5%B7%E7%82%B9/" itemprop="url">
-              
-                <span itemprop="name">起点</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-05-25T09:12:00+08:00"
-              content="2020-05-25" >
-          05-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hyperledger-Fabric/" rel="tag"># Hyperledger Fabric</a>
+          
+            <a href="/tags/Hyperledger-Caliper/" rel="tag"># Hyperledger Caliper</a>
+          
+            <a href="/tags/docker/" rel="tag"># docker</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/07/10/Sentinel%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-sentinel-cluster/" rel="next" title="Sentinel学习笔记:sentinel-cluster">
+                <i class="fa fa-chevron-left"></i> Sentinel学习笔记:sentinel-cluster
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/"><i class="fa fa-angle-left" aria-label="accessibility.prev_page"></i></a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
-  </nav>
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -677,6 +486,13 @@
 
 
           
+
+  
+    <div id="gitalk-container">
+    </div>
+  
+
+
 
         </div>
         
@@ -697,8 +513,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -762,6 +587,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#有的没的"><span class="nav-number">1.</span> <span class="nav-text">有的没的</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境准备"><span class="nav-number">2.1.</span> <span class="nav-text">环境准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#启动docker时ssh掉线镜像获取速度慢"><span class="nav-number">2.1.1.</span> <span class="nav-text">启动docker时ssh掉线&amp;镜像获取速度慢</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git卡在卡在clone-into"><span class="nav-number">2.1.2.</span> <span class="nav-text">git卡在卡在clone into</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译出错"><span class="nav-number">2.1.3.</span> <span class="nav-text">编译出错</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#node.js安装"><span class="nav-number">2.1.4.</span> <span class="nav-text">Node.js安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署测试网络"><span class="nav-number">2.2.</span> <span class="nav-text">部署测试网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fabric版本"><span class="nav-number">2.2.1.</span> <span class="nav-text">Fabric版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无法获取官方脚本"><span class="nav-number">2.2.2.</span> <span class="nav-text">无法获取官方脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bootstrap.sh脚本运行错误"><span class="nav-number">2.2.3.</span> <span class="nav-text">bootstrap.sh脚本运行错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行测试网络错误链码安装失败"><span class="nav-number">2.2.4.</span> <span class="nav-text">运行测试网络错误（链码安装失败）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行calpier"><span class="nav-number">2.3.</span> <span class="nav-text">运行Calpier</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#npm权限不足"><span class="nav-number">2.3.1.</span> <span class="nav-text">npm权限不足</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#链码执行超时"><span class="nav-number">2.3.2.</span> <span class="nav-text">链码执行超时</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#超过并发限制"><span class="nav-number">2.3.3.</span> <span class="nav-text">超过并发限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#caliper配置"><span class="nav-number">2.3.4.</span> <span class="nav-text">Caliper配置</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -922,6 +763,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -962,9 +807,43 @@
 
 
 
-<!---->
+<!--
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="/js/src/md5.min.js"></script>
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: '',
+      clientSecret: '',
+      repo: 'github-pages-comments',
+      owner: '',
+      admin: [''],
+      id: location.pathname,
+      id: md5(location.pathname),
+      distractionFreeMode: 'false'
+    })
+    gitalk.render('gitalk-container')
+  </script>
+-->
 
 
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <div id="gitalk-container"></div>
+  <script src="/js/src/md5.min.js"></script>
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: 'cb2e7201cbc8c531d2e2',
+      clientSecret: 'c5d11683241ac9caffe2b491c39b17813bbb06ad',
+      repo: 'github-pages-comments',
+      owner: 'LearningGp',
+      admin: ['LearningGp'],
+      id: md5(location.pathname),
+      distractionFreeMode: 'false'
+    })
+    gitalk.render('gitalk-container')
+  </script>
 
   
 
@@ -1283,42 +1162,7 @@
         onPopupClose();
       }
     });
-  </script>
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -1336,6 +1180,21 @@
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
   
 
 

@@ -3,7 +3,7 @@ name: learninggp.io deploy
 on:
   push:
     branches:
-      - main
+      - master
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
